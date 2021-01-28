@@ -43,7 +43,7 @@
                 email: this.email,
                 password: this.password
       }
-     await axios.post('/api/users/signin', user)
+     await axios.post('http://localhost:5000/api/users/signin', user)
         .then(res => {
           //if successfull
           if (res.status === 200) {

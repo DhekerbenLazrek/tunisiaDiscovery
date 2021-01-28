@@ -112,7 +112,7 @@ export default {
         password: this.password,
       };
       await axios
-        .post("/api/users/signup", newUser)
+        .post("http://localhost:5000/api/users/signup", newUser)
         .then((newUser) => {
           console.log(newUser);
           this.error = "";

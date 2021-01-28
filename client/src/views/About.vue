@@ -1,48 +1,87 @@
-<template>
+ <template>
   <v-content>
+    <div id="contact">
+      <form class="vue-form" >
+      <fieldset>
+
+      <v-row align="end" class="lightbox white--text pa-2 fill-height">
+        <v-col>
+          <v-container>
+        <h1 class="text-center"> Contact Us </h1>      
+     </v-container>
+        </v-col>
+      </v-row>
+  
     <div>
+      <v-container>
+        <v-form ref="form" v-model="valid" lazy-validation>
+          <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field>
+          <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+          <v-textarea v-model="message" :rules="messageRules" label="Message" required></v-textarea>
+          <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Submit</v-btn>
+          <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
+        </v-form>
+      </v-container>
+    </div>
     
-        <v-row align="end" class="lightbox white--text pa-2 fill-height">
-          <v-col>
-            <v-container>
-              <div class="headline">About Us</div>
-            </v-container>
-          </v-col>
-        </v-row>
-      
-    </div>
+
     <div>
-      <v-container>
-        <p>Ea pri vitae antiopam theophrastus, ut sit erat putent eruditi. Qui at mutat adversarium. Postulant delicatissimi ei qui, an nonumy dolorem nam. Cu philosophia instructior pri, nec cu mutat homero saperet, cu paulo ridens legendos has. Cu veri oportere pri, ad integre numquam iudicabit mel. Nec ea ferri iudicabit dissentiet. Ex solet melius omittantur his, in gloriatur vulputate mel. Ad nostro repudiandae ius, est amet molestie te. No est modus sensibus volutpat, et putent dissentias has, et sea eirmod vivendum. Paulo lucilius expetenda sea in, cu nam mazim sanctus ponderum. Te nam mundi corpora, dicat dolore debitis ius in. Indoctum adversarium definitionem an pro, an eam vidit utinam detracto.</p>
-      </v-container>
-    </div>
-    <div>
-      <v-container>
-        <h2 class="text-center">Our Teams</h2>
-        <v-row>
-          <v-col v-for="item in items" :key="item.id" class="d-flex child-flex" cols="12" sm="4">
-            <v-card flat tile class="mx-auto">
-              
-              <v-card-text class="text--primary text-center">
-                <div class="title">{{ item.name }}</div>
-                <p>{{ item.title }}</p>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </div>
-  </v-content>
+        <label class="label" for="textarea">Message with Counter</label>
+        <textarea class="message" name="textarea" id="textarea" required="" v-model="message.text" 
+                  :maxlength="message.maxlength"></textarea>
+        <span class="counter">{{ message.text.length }} / {{ message.maxlength }}</span>
+      </div>
+
+</fieldset>
+</form>
+  </div>
+   
+   </v-content>
 </template>
 
 <script>
 export default {
-  name: "About",
-  data() {
-    return {
-     
-      
-    };
-  }
-};
-</script>
+  name: "contact",
+  data: () => ({
+    valid: true,
+    name: "",
+    nameRules: [
+      v => !!v || "Name is required",
+      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+    ],
+    email: "",
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ],
+    message: "",
+    messageRules: [
+      v => !!v || "Message is required",
+      v => (v && v.length >= 10) || "Message must be more than 10 characters"
+    ],
+  }),
+  methods: {
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+      }
+    }, 
+      reset() {
+       this.$refs.form.reset();
+     }
+ }
+ };
+ </script>
+
+ <style>
+body {
+  color: #fff;
+  background: #949c4e;
+  background: linear-gradient(
+    115deg,
+    rgba(86, 216, 228, 1) 10%,
+    rgba(159, 1, 234, 1) 90%
+  );
+}
+
+ </style>

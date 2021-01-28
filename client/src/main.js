@@ -18,6 +18,7 @@ import card from './components/Hotels/Cards';
 import events from './components/events/events';
 import filter from './components/Hotels/filter';
 import Gallery from './components/places/Gallery'
+import tickets from './components/Tickets/tickets'
 
 import 'vuetify/dist/vuetify.min.css'
 
@@ -79,6 +80,10 @@ const router = new VueRouter({
         {
             path: '/CarsPost',
             component: CarsPost
+        },
+        {
+            path: '/tickets',
+            component: tickets
         },
     ],
     mode: 'history'
