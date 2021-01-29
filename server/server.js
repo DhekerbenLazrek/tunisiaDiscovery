@@ -12,6 +12,8 @@ const HotelRoutes = require("./routes/hotels");
 const PlaceRoutes = require("./routes/place");
 const usersRoutes = require("./routes/users");
 const EventsRoutes = require("./routes/Events");
+const PayEventsRoutes = require("./routes/PayEvents");
+
 
 const app = express();
 
@@ -38,6 +40,7 @@ app.use("/api/hotels", HotelRoutes);
 app.use("/api/place", PlaceRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/events", EventsRoutes);
+app.use("/api/PayEvents", PayEventsRoutes);
 
 //testing server activation on first run
 //  app.get('/', (req, res) =>{

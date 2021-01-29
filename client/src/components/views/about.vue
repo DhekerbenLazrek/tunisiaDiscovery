@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <div>
-        <v-row align="end" class="lightbox white--text pa-2 fill-height">
+        <v-row>
           <v-col>
             <v-container>
              <h1 class="text-center"> About Us </h1>

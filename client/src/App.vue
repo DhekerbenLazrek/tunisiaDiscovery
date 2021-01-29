@@ -1,10 +1,11 @@
 <template>
   <v-app>
     <img
-      src="https://www.xmple.com/wallpaper/gradient-blue-linear-grey-2880x1800-c2-c0c0c0-1e90ff-a-90-f-14.svg"
+      src=""
       id="bg"
       alt
     />
+    
     <v-app-bar max-height="65">
       <navbar />
     </v-app-bar>
@@ -41,7 +42,5 @@ export default {
   min-width: 100%;
   min-height: 100%;
 }
-.navbar {
-  font-size: 100px;
-}
+
 </style>

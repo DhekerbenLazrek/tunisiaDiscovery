@@ -5,13 +5,14 @@ const router = Router();
 
 router.post('/events', async (req,res)=> {
     console.log (req.body)
-    const { title, image, description, youtubeLink,dateevents } = req.body;
+    const { title, image, description, youtubeLink,dateevents,price } = req.body;
         let event = {};
         event.title = req.body.title;
         event.image = req.body.image;
         event.description = req.body.description;
         event.youtubeLink = req.body.youtubeLink;
         event.dateevents = req.body.dateevents;
+        event.price = req.body.price;
         console.log(events.title)
         let eventModel = new events(event);
         await eventModel.save();
@@ -19,6 +20,7 @@ router.post('/events', async (req,res)=> {
         
     
  });
+//  ------------------------- get all events-----------------------
  router.get('/allevents', async(req, res) => {
     try {
         const event = await events.find();
@@ -29,6 +31,18 @@ router.post('/events', async (req,res)=> {
         res.status(200).json(sorted);
     } catch (err) {
         res.status(500).json({ message: err.message })
+    }
+});
+
+// ----------get one event--------------
+router.get("/:id", async(req, res) => {
+    const { id } = req.params;
+    try {
+        const oneEvent = await events.findById(id);
+        if (!oneEvent) throw new Error("No Events to display Err !");
+        res.status(200).json(oneEvent);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 });
  

@@ -1,56 +1,99 @@
 <template>
-  <v-container>
-    <v-toolbar flat class="mainHeader">
-      <v-toolbar-title>Tunisia Discovery Project</v-toolbar-title>
+<section class="bg-primary text-black pt-9 pb-6">
+  <v-sheet elevation="1" >
+    <v-tabs id="tabs" 
+      background-color="teal darken-4"
+      dark
+      show-arrows
+    >
+   
 
-      <v-toolbar-items class="hidden-xs-only">
-        <v-btn text>
-          <router-link to="/home">Home</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/Gallery">Destinations</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/hotels">Hotels</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/events">Events</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/CarsPost">Cars</router-link>
-        </v-btn>
-      </v-toolbar-items>
-      <div class="navdiv" v-if="!this.islogged" >
-  
-      <span class="name_loggedin" >Not a member? </span>
+      <v-tabs-slider color="green"></v-tabs-slider>
 
-      <v-btn class="navbar_space2" color="blue lighten-3" router-link to="/signin">SIGN IN</v-btn>
-      <v-btn  color="blue lighten-3" router-link to="/signup">SIGN UP</v-btn>
+      <v-tab>
+       <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/home">
+       Home
+    </v-btn>
+    </v-tab>
+
+    <v-tab>
+       <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/hotels">
+     Hotels
+    </v-btn>
+    </v-tab>
+
+   <v-tab>
+       <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/Gallery">
+    Places
+    
+    </v-btn>
+    </v-tab>
+
+      <v-tab>
+       <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/events">
+     Events
+    </v-btn>
+    </v-tab>
+
+    <v-tab>
+       <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/CarsPost">
+     Cars
+    </v-btn>
+    </v-tab>
+      <!-- -------logout------ -->
+    <div class="navdiv" v-if="!this.islogged" >
+            <span class="name_loggedin" >Not a member? </span>
+
+      <v-tab>
+       <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/signin">
+     Sign In
+    </v-btn>
+    </v-tab>
+
+      <v-tab>
+       <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/signup">
+     Sign Up
+    </v-btn>
+    </v-tab>
+
       </div>
       <div class="navdiv2" v-else-if='this.islogged'>
-      <span class="name_loggedin">{{this.islogged}}</span>
+      <span class="name_loggedin"><v-icon>{{ icons.mdiAccount }}</v-icon>{{this.username}}</span>
+      <v-btn color="green" class="navbar_space2" router-link to="/payment"><v-icon>mdi-cart</v-icon></v-btn>
+      <v-btn @click="logout()" class="navbar_space2" color="red" >logout</v-btn>
       
-      <v-btn @click="logout()" class="navbar_space" color="blue lighten-3" >logout</v-btn>
       </div>
       
-    </v-toolbar>
-  </v-container>
+</v-tabs>
+  </v-sheet>
+  </section>
 </template>
 
-<script>
-const Cookie =require('js-cookie')
+ <script>
+
+const Cookie =require('js-cookie');
+import {mdiAccount} from '@mdi/js';
+
 export default {
   name: "navbar",
   data: () => ({
-    islogged:Cookie.get('name')
+    islogged:!!Cookie.get('name'),
+    username:Cookie.get('name'),
+    icons: {
+        mdiAccount}
   }),
+  updated(){
+    if(Cookie.get('name')){
+      this.islogged= true;
+    }
+  },
   methods:{
     logout(){
+      this.islogged = false;
       Cookie.remove('name')
-      window.location.replace('/')
+      this.$router.push('/home')
     }
   }
-
 };
 </script>
 
@@ -72,7 +115,6 @@ export default {
 .navdiv2{
  display:flex;
  justify-content:space-between;
-
  
 }
 .navbar_space{
@@ -80,5 +122,11 @@ export default {
 }
 .navbar_space2{
    margin-left:5rem;
+}
+#tabs {
+ margin: auto;
+  width: 500%;
+  border: 3px solid green;
+  
 }
 </style>

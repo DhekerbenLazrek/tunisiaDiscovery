@@ -4,7 +4,7 @@
       <form class="vue-form" >
       <fieldset>
 
-      <v-row align="end" class="lightbox white--text pa-2 fill-height">
+      <v-row>
         <v-col>
           <v-container>
         <h1 class="text-center"> Contact Us </h1>      
