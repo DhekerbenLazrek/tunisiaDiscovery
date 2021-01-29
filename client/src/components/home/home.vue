@@ -2,8 +2,7 @@
   <v-main>
        
           <h1 style="background-color:green;">ᴅɪꜱᴄᴏᴠᴇʀɪɴɢ ᴛᴜɴꜱɪᴀ </h1>
-  <div class="headline white--text pa-2" ></div>
-          
+  
 
     <div class="app">
       <c />

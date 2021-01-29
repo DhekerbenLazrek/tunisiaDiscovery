@@ -3,7 +3,7 @@ const  events = require('../models/Events');
 
 const router = Router();
 
-router.post('/events', async (req,res)=> {
+router.post('/create', async (req,res)=> {
     console.log (req.body)
     const { title, image, description, youtubeLink,dateevents,price } = req.body;
         let event = {};
@@ -43,6 +43,18 @@ router.get("/:id", async(req, res) => {
         res.status(200).json(oneEvent);
     } catch (err) {
         res.status(500).json({ message: err.message });
+    }
+});
+
+//------------ delete an event ------------------
+router.delete('/:id', async (req, res) =>{
+    try{
+        const { id } = req.params
+        const deleteEvent = await events.findByIdAndDelete(id);
+        if(!deleteEvent) throw new Error('event deletion not done !');
+        res.status(200).json(deleteEvent);
+    } catch (err) {
+        res.status(500).json({message: err.message})
     }
 });
  

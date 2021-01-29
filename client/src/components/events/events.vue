@@ -1,7 +1,20 @@
 <template>
   <v-app>
   <v-container>
-    
+    <createEvent v-if="apear"/>
+  <v-btn
+      v-if="userstatus === 'admin'"
+      class="mx-2"
+      dark
+      large
+      color="cyan"
+   @click="apearcarcreate"
+    > create event
+      <v-icon dark>
+        mdi-pencil
+      </v-icon>
+    </v-btn>
+
     <div>
      <h1> Events you might like <img src="https://www.pngitem.com/pimgs/m/376-3765871_transparent-tunisia-flag-png-png-download.png" id="gg" alt/></h1> 
 
@@ -20,6 +33,7 @@
     </v-card-subtitle>
      <v-card-title color="black"> <strong>{{event.title}}</strong> </v-card-title>   
       <v-btn color="teal accent-2" @click="revealEv(index)"> Learn More </v-btn>  <v-btn color="teal accent-2" @click="showevent(event._id)"> Buy Ticket</v-btn>
+        <v-btn v-if="userstatus === 'admin'" class="ma-1" color="red" @click="remove(event._id)">Delete</v-btn>
       <br>
       <v-btn block color="teal accent-2" @click="watchVideo(index)" >Watch Video <v-icon>mdi-television-play</v-icon></v-btn>
     <v-expand-transition>
@@ -44,7 +58,7 @@
         
         <v-card-text class="pb-0">
          
-       <iframe width="350" height="315" :src="event.youtubeLink" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       <embed class="video" type="video/webm" :src="event.youtubeLink" width="600" height="600">
         </v-card-text>
 
     <v-card-actions class="pt-0">
@@ -78,6 +92,8 @@
 
 <script>
 import axios from 'axios'
+import createEvent from './createEvent';
+const Cookie =require('js-cookie');
 export default {
   
   name: "Events",
@@ -85,8 +101,14 @@ export default {
 
   data: () => {return{
         events: [],
+        apear : false,
+        userstatus:Cookie.get('status'),
       reveal: false,
    }},
+
+   components: {
+    createEvent,
+  },
   async mounted() {
     const response = await axios.get("http://localhost:5000/api/events/allevents"); 
     for(var i = 0; i < response.data.length; i++) {
@@ -106,7 +128,14 @@ export default {
    showevent(id){
       this.$router.push(`/eventsShow/${id}`)
     },
-}
+     apearcarcreate(){
+      this.apear = !this.apear;
+    },
+    async remove(id){
+            await axios.delete(`http://localhost:5000/api/events/${id}`);
+            window.location.replace("/events");
+        }
+  }
 };
 
 </script>
