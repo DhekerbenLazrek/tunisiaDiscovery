@@ -21,6 +21,12 @@
           </span>
         </div>
       </div>
+      <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/about">
+     About
+    </v-btn>
+     <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/contact">
+     Contact
+    </v-btn>
       <v-card-text class="white--text">
         {{ new Date().getFullYear() }} —
         <strong>Tunisia Discovery</strong>

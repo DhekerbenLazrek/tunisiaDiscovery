@@ -1,15 +1,15 @@
 <template>
   <v-app>
     <v-content>
-      <v-card width="800" height="320" class="mx-auto mt-9">
+      <v-card width="800" height="320" class="mx-auto mt-9"  id = "signup">
         <v-card-title>Registration Form</v-card-title>
         <validation-observer ref="observer" v-slot="{ invalid }">
           <form @submit.prevent="submit">
             <validation-provider v-slot="{ errors }" name="Name" rules="required|max:20">
-              <v-text-field v-model="name" :error-messages="errors" label="Name" required></v-text-field>
+              <v-text-field id="name" v-model="name" :error-messages="errors" label="Name" required></v-text-field>
             </validation-provider>
-            <validation-provider v-slot="{ errors }" name="email" rules="required|email">
-              <v-text-field v-model="email" :error-messages="errors" label="E-mail" required></v-text-field>
+            <validation-provider v-slot="{ errors }" name="Email" rules="required|email">
+              <v-text-field id="email" v-model="email" :error-messages="errors" label="E-mail" required></v-text-field>
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
@@ -20,10 +20,11 @@
           regex: '^(21|22|24|26|53|52|54|55|52|97|98|99)\\d{5}$'
         }"
             >
-              <v-text-field v-model="number" :error-messages="errors" label="Phone Number" required></v-text-field>
+              <v-text-field id ="phonenumber" v-model="number" :error-messages="errors" label="Phone Number" required></v-text-field>
             </validation-provider>
             <validation-provider v-slot="{ errors }" name="select" rules="required">
               <v-select
+                id="select"
                 v-model="select"
                 :items="items"
                 :error-messages="errors"
@@ -33,6 +34,7 @@
               ></v-select>
             </validation-provider>
             <v-text-field
+              id="password"
               label="Password"
               :type="showPassword ? 'text' : 'password'"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -42,7 +44,7 @@
               error-count="1"
               required
             ></v-text-field>
-            <v-btn class="mr-4" type="submit" :disabled="invalid">Submit</v-btn>
+            <v-btn class="mr-4" type="submit" color="white" :disabled="invalid">Submit</v-btn>
             {{ error}}
           </form>
         </validation-observer>
@@ -128,3 +130,38 @@ export default {
   },
 };
 </script>
+
+
+
+<style>
+#signup {
+   background: #78e694;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin: 60px;
+  width: 370px;
+  margin: 0 auto;
+  display: table;
+  padding: 20px;
+  line-height: 1.4em;
+}
+
+#name {
+  color :white;
+}
+#email {
+  color:white;
+}
+#phonenumber {
+  color :white;
+}
+#select {
+  color :white;
+}
+#password {
+  color :white;
+}
+
+
+</style>

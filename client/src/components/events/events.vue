@@ -33,7 +33,9 @@
     </v-card-subtitle>
      <v-card-title color="black"> <strong>{{event.title}}</strong> </v-card-title>   
       <v-btn color="teal accent-2" @click="revealEv(index)"> Learn More </v-btn>  <v-btn color="teal accent-2" @click="showevent(event._id)"> Buy Ticket</v-btn>
-        <v-btn v-if="userstatus === 'admin'" class="ma-1" color="red" @click="remove(event._id)">Delete</v-btn>
+        <v-btn v-if="userstatus === 'admin'" class="ma-1" color="red" @click="remove(event._id)">Delete  <v-icon dark right>
+          mdi-cancel
+        </v-icon></v-btn>
       <br>
       <v-btn block color="teal accent-2" @click="watchVideo(index)" >Watch Video <v-icon>mdi-television-play</v-icon></v-btn>
     <v-expand-transition>
@@ -77,6 +79,7 @@
     </div>
     </v-col>
     </v-row>
+    <br>
 <!-- Plan a Visit to Tunisia -->
     <h2 data-orig-font="48px" style="font-size: 40px;">Plan a Visit to Tunisia</h2>
     <p>
@@ -84,6 +87,15 @@
       If you are interested in visiting Tunisia our travel experts
       are happy to assist you to plan a Tunisia tour that could include one or more of these festivals in Tunisia.
     </p>
+    
+    <form action="https://www.vuescript.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-form-comment">
+      <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment Text"></textarea></p><p class="comment-form-author">
+        <input id="author" name="author" type="text" placeholder="Name" value="" size="30"></p><p class="comment-form-email">
+          <input id="email" name="email" type="text" placeholder="Email" value="" size="30"></p><p class="comment-form-url">
+            <v-btn  outlined color="light-green lighten-5" name="submit" type="submit" id="submit" class="ma-2" value="Submit Comment">  Submit</v-btn>
+              <input type="hidden" name="comment_post_ID" value="3792" id="comment_post_ID"> 
+              <input type="hidden" name="comment_parent" id="comment_parent" value="0"></p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="c5798f7902"></p><p style="display: none;"></p><input type="hidden" id="ak_js" name="ak_js" value="1611959195570"></form>
+  
 
   </v-container>
     </v-app>
@@ -160,6 +172,40 @@ export default {
 #gg {
 width:6%;
 height:6%;
+}
+#commentform{
+  
+  margin: auto;
+   background: #212222;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin: 60px;
+  width: 370px;
+  margin: 0 auto;
+  display: table;
+  padding: 20px;
+  line-height: 1.4em;
+  
+}
+
+#comment{
+background-color:white;
+}
+#author{
+  background-color:white;
+}
+#email {
+background-color:white;
+}
+#submit {
+background-color :rgb(45, 211, 45);
+}
+#comment_post_ID {
+  background-color :red;
+}
+#comment_parent {
+  background-color :red;
 }
 
 </style>

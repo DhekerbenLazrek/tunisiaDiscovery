@@ -1,19 +1,27 @@
 <template>
    <v-app>
-    <v-content>
-      <v-card width="800" height="320" class="mx-auto mt-9">
+    <v-content >
+      <v-card width="800" height="320" class="mx-auto mt-9" id = "login">
         <v-card-title>Login Form</v-card-title>
-   <form>
-    <v-text-field
+   <form > 
+    <v-text-field 
+      id="mail"
       v-model="email"
       label="E-mail"
       required
+      color ="white"
     ></v-text-field>
     <v-text-field
-        label="Password"
-        v-model="password"
-        type="password"
-        required
+          id="password"
+          label="Password"
+          v-model="password"
+          required
+          color ="white"
+          :type="showPassword ? 'text' : 'password'"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
+          :rules="passwordRules"
+          error-count="1"
 ></v-text-field>
     <v-btn
       class="mr-4"
@@ -36,7 +44,9 @@
     return {
       email: '',
       password: '',
+      showPassword: false,
       error: '',
+    
     }},
     methods:{
      async signin() {
@@ -64,3 +74,25 @@
     }
  }
 </script>
+<style> 
+#login {
+   background: #78e694;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin: 60px;
+  width: 370px;
+  margin: 0 auto;
+  display: table;
+  padding: 20px;
+  line-height: 1.4em;
+}
+
+#mail {
+  color: white;
+}
+
+#password {
+  color:white;
+}
+</style>

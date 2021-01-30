@@ -13,7 +13,7 @@
     </div>
     <div>
       <v-container>
-        <v-form ref="form" v-model="valid" lazy-validation>
+        <v-form ref="form" v-model="valid" lazy-validation id ="contact">
           <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field>
           <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
           <v-textarea v-model="message" :rules="messageRules" label="Message" required></v-textarea>
@@ -59,3 +59,19 @@ export default {
   }
 };
 </script>
+
+<style> 
+#contact {
+   background: #75eeee;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin: 60px;
+  width: 700px;
+  margin: 0 auto;
+  display: table;
+  padding: 20px;
+  line-height: 1.4em;
+}
+
+</style>
